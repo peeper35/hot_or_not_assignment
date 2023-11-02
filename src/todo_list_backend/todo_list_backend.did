@@ -1,3 +1,10 @@
+type Result = variant { Ok : text; Err : text };
+type Result_1 = variant { Ok : TodoTask; Err : text };
+type TodoTask = record { title : text; desc : text; completed : bool };
 service : {
-    "greet": (text) -> (text) query;
+  create_todo : (text, text) -> (nat);
+  delete_todo : (nat) -> (Result);
+  fetch_all_todos : (nat64, nat64) -> (vec record { nat; TodoTask }) query;
+  fetch_todo : (nat) -> (Result_1) query;
+  update_todo : (nat, TodoTask) -> (Result);
 }
